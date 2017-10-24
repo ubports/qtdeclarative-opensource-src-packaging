@@ -1,4 +1,4 @@
-qtdeclarative-opensource-src (5.9.1-4ubuntu1) artful; urgency=medium
+qtdeclarative-opensource-src (5.9.1+ubports) xenial; urgency=medium
 
   [ Simon Quigley ]
   * Merge from Debian Experimental in Git repo. Remaining changes:
