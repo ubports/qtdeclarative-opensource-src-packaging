@@ -1,3 +1,9 @@
+qtdeclarative-opensource-src (5.9.3+ubports) xenial; urgency=medium
+
+  * Import to 5.9.3 to ubports
+
+ -- Dan Chapman <dan@ubports.com>  Fri, 23 Feb 2018 11:33:18 +0000
+
 qtdeclarative-opensource-src (5.9.3-0ubuntu1) bionic; urgency=medium
 
   * New upstream release.
