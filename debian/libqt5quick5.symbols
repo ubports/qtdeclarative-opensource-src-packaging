@@ -1,6 +1,6 @@
-# SymbolsHelper-Confirmed: 5.9.1 amd64 arm64 i386 kfreebsd-i386 ppc64 ppc64el s390x sparc64
+# SymbolsHelper-Confirmed: 5.9.3 amd64 arm64 armhf i386 ppc64el s390x
 libQt5Quick.so.5 libqt5quick5 #MINVER#
-| libqt5quick5 #MINVER#, qtdeclarative-abi-5-9-0
+| libqt5quick5 #MINVER#, qtdeclarative-abi-5-9-3
  Qt_5.0@Qt_5.0 5.6.0~beta
  Qt_5.1@Qt_5.1 5.6.0~beta
  Qt_5.2@Qt_5.2 5.6.0~beta
@@ -917,7 +917,6 @@ libQt5Quick.so.5 libqt5quick5 #MINVER#
  _ZN14QQuickProfiler16staticMetaObjectE@Qt_5_PRIVATE_API 5.3.0 1
  _ZN14QQuickProfiler17stopProfilingImplEv@Qt_5_PRIVATE_API 5.3.0 1
  _ZN14QQuickProfiler18startProfilingImplEy@Qt_5_PRIVATE_API 5.4.0 1
- (optional=templinst|arch=armel armhf i386 kfreebsd-i386 m68k)_ZN14QQuickProfiler24skipSceneGraphTimestampsILN23QQmlProfilerDefinitions19SceneGraphFrameTypeE3ELj1EEEvj@Qt_5_PRIVATE_API 5.9.0~beta3 1
  _ZN14QQuickProfiler25registerAnimationCallbackEv@Qt_5_PRIVATE_API 5.3.0 1
  _ZN14QQuickProfiler8setTimerERK13QElapsedTimer@Qt_5_PRIVATE_API 5.3.0 1
  _ZN14QQuickProfiler9dataReadyERK7QVectorI18QQuickProfilerDataE@Qt_5_PRIVATE_API 5.7.0 1
@@ -1616,6 +1615,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER#
  _ZN16QSGBatchRenderer8Renderer21deleteRemovedElementsEv@Qt_5_PRIVATE_API 5.2.0~beta1 1
  _ZN16QSGBatchRenderer8Renderer21turnNodeIntoBatchRootEPNS_4NodeE@Qt_5_PRIVATE_API 5.2.0~beta1 1
  _ZN16QSGBatchRenderer8Renderer21visualizeDrawGeometryEPK11QSGGeometry@Qt_5_PRIVATE_API 5.3.0 1
+ _ZN16QSGBatchRenderer8Renderer22releaseCachedResourcesEv@Qt_5_PRIVATE_API 5.9.2 1
  _ZN16QSGBatchRenderer8Renderer23visualizeChangesPrepareEPNS_4NodeEj@Qt_5_PRIVATE_API 5.3.0 1
  _ZN16QSGBatchRenderer8Renderer24visualizeOverdraw_helperEPNS_4NodeE@Qt_5_PRIVATE_API 5.3.0 1
  _ZN16QSGBatchRenderer8Renderer25invalidateAndRecycleBatchEPNS_5BatchE@Qt_5_PRIVATE_API 5.2.0~beta1 1
@@ -2249,6 +2249,19 @@ libQt5Quick.so.5 libqt5quick5 #MINVER#
  _ZN20QQuickTextureFactoryD0Ev@Qt_5 5.0.2
  _ZN20QQuickTextureFactoryD1Ev@Qt_5 5.0.2
  _ZN20QQuickTextureFactoryD2Ev@Qt_5 5.0.2
+ _ZN20QQuickWindowAttached11qt_metacallEN11QMetaObject4CallEiPPv@Qt_5_PRIVATE_API 5.9.2 1
+ _ZN20QQuickWindowAttached11qt_metacastEPKc@Qt_5_PRIVATE_API 5.9.2 1
+ _ZN20QQuickWindowAttached12widthChangedEv@Qt_5_PRIVATE_API 5.9.2 1
+ _ZN20QQuickWindowAttached12windowChangeEP12QQuickWindow@Qt_5_PRIVATE_API 5.9.2 1
+ _ZN20QQuickWindowAttached13activeChangedEv@Qt_5_PRIVATE_API 5.9.2 1
+ _ZN20QQuickWindowAttached13heightChangedEv@Qt_5_PRIVATE_API 5.9.2 1
+ _ZN20QQuickWindowAttached13windowChangedEv@Qt_5_PRIVATE_API 5.9.2 1
+ _ZN20QQuickWindowAttached16staticMetaObjectE@Qt_5_PRIVATE_API 5.9.2 1
+ _ZN20QQuickWindowAttached17visibilityChangedEv@Qt_5_PRIVATE_API 5.9.2 1
+ _ZN20QQuickWindowAttached18contentItemChangedEv@Qt_5_PRIVATE_API 5.9.2 1
+ _ZN20QQuickWindowAttached22activeFocusItemChangedEv@Qt_5_PRIVATE_API 5.9.2 1
+ _ZN20QQuickWindowAttachedC1EP7QObject@Qt_5_PRIVATE_API 5.9.2 1
+ _ZN20QQuickWindowAttachedC2EP7QObject@Qt_5_PRIVATE_API 5.9.2 1
  _ZN20QSGBasicGeometryNode11setGeometryEP11QSGGeometry@Qt_5 5.0.2
  _ZN20QSGBasicGeometryNodeC1EN7QSGNode8NodeTypeE@Qt_5 5.0.2
  _ZN20QSGBasicGeometryNodeC1ER27QSGBasicGeometryNodePrivateN7QSGNode8NodeTypeE@Qt_5 5.2.0~beta1
@@ -2973,6 +2986,28 @@ libQt5Quick.so.5 libqt5quick5 #MINVER#
  _ZN27QQuickKeyNavigationAttached9upChangedEv@Qt_5_PRIVATE_API 5.4.0 1
  _ZN27QQuickKeyNavigationAttachedC1EP7QObject@Qt_5_PRIVATE_API 5.4.0 1
  _ZN27QQuickKeyNavigationAttachedC2EP7QObject@Qt_5_PRIVATE_API 5.4.0 1
+ _ZN27QSGAbstractSoftwareRenderer11nodeChangedEP7QSGNode6QFlagsINS0_13DirtyStateBitEE@Qt_5_PRIVATE_API 5.9.3
+ _ZN27QSGAbstractSoftwareRenderer11nodeRemovedEP7QSGNode@Qt_5_PRIVATE_API 5.9.3
+ _ZN27QSGAbstractSoftwareRenderer11renderNodesEP8QPainter@Qt_5_PRIVATE_API 5.9.3
+ _ZN27QSGAbstractSoftwareRenderer14addNodeMappingEP7QSGNodeP25QSGSoftwareRenderableNode@Qt_5_PRIVATE_API 5.9.3
+ _ZN27QSGAbstractSoftwareRenderer14backgroundSizeEv@Qt_5_PRIVATE_API 5.9.3
+ _ZN27QSGAbstractSoftwareRenderer15backgroundColorEv@Qt_5_PRIVATE_API 5.9.3
+ _ZN27QSGAbstractSoftwareRenderer15buildRenderListEv@Qt_5_PRIVATE_API 5.9.3
+ _ZN27QSGAbstractSoftwareRenderer17nodeMatrixUpdatedEP7QSGNode@Qt_5_PRIVATE_API 5.9.3
+ _ZN27QSGAbstractSoftwareRenderer17setBackgroundSizeERK5QSize@Qt_5_PRIVATE_API 5.9.3
+ _ZN27QSGAbstractSoftwareRenderer18nodeOpacityUpdatedEP7QSGNode@Qt_5_PRIVATE_API 5.9.3
+ _ZN27QSGAbstractSoftwareRenderer18optimizeRenderListEv@Qt_5_PRIVATE_API 5.9.3
+ _ZN27QSGAbstractSoftwareRenderer18setBackgroundColorERK6QColor@Qt_5_PRIVATE_API 5.9.3
+ _ZN27QSGAbstractSoftwareRenderer19nodeGeometryUpdatedEP7QSGNode@Qt_5_PRIVATE_API 5.9.3
+ _ZN27QSGAbstractSoftwareRenderer19nodeMaterialUpdatedEP7QSGNode@Qt_5_PRIVATE_API 5.9.3
+ _ZN27QSGAbstractSoftwareRenderer20appendRenderableNodeEP25QSGSoftwareRenderableNode@Qt_5_PRIVATE_API 5.9.3
+ _ZN27QSGAbstractSoftwareRenderer9markDirtyEv@Qt_5_PRIVATE_API 5.9.3
+ _ZN27QSGAbstractSoftwareRenderer9nodeAddedEP7QSGNode@Qt_5_PRIVATE_API 5.9.3
+ _ZN27QSGAbstractSoftwareRendererC1EP16QSGRenderContext@Qt_5_PRIVATE_API 5.9.3
+ _ZN27QSGAbstractSoftwareRendererC2EP16QSGRenderContext@Qt_5_PRIVATE_API 5.9.3
+ _ZN27QSGAbstractSoftwareRendererD0Ev@Qt_5_PRIVATE_API 5.9.3
+ _ZN27QSGAbstractSoftwareRendererD1Ev@Qt_5_PRIVATE_API 5.9.3
+ _ZN27QSGAbstractSoftwareRendererD2Ev@Qt_5_PRIVATE_API 5.9.3
  _ZN27QSGDefaultInternalImageNode12setFilteringEN10QSGTexture9FilteringE@Qt_5_PRIVATE_API 5.9.0~beta 1
  _ZN27QSGDefaultInternalImageNode18setMaterialTextureEP10QSGTexture@Qt_5_PRIVATE_API 5.9.0~beta 1
  _ZN27QSGDefaultInternalImageNode18setMipmapFilteringEN10QSGTexture9FilteringE@Qt_5_PRIVATE_API 5.9.0~beta 1
@@ -3133,7 +3168,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER#
  _ZN36QQuickDesignerSupportPropertyChanges15detachFromStateEP7QObject@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZN36QQuickDesignerSupportPropertyChanges16changeExpressionEP7QObjectRK10QByteArrayRK7QString@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZN36QQuickDesignerSupportPropertyChanges16isNormalPropertyERK10QByteArray@Qt_5_PRIVATE_API 5.6.0~beta 1
- (optional=templinst)_ZN3QV45Value2asINS_6ObjectEEEPT_v@Qt_5 5.9.0~beta3
+ (optional=templinst|arch=alpha mips64el sparc64)_ZN3QV45Value2asINS_6ObjectEEEPT_v@Qt_5 5.9.1
  _ZN40QSGDistanceFieldShiftedStyleTextMaterialC1Ev@Qt_5_PRIVATE_API 5.0.2 1
  _ZN40QSGDistanceFieldShiftedStyleTextMaterialC2Ev@Qt_5_PRIVATE_API 5.0.2 1
  _ZN40QSGDistanceFieldShiftedStyleTextMaterialD0Ev@Qt_5_PRIVATE_API 5.0.2 1
@@ -3317,7 +3352,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER#
  _ZNK10QSGTexture18horizontalWrapModeEv@Qt_5 5.0.2
  _ZNK10QSGTexture24normalizedTextureSubRectEv@Qt_5 5.0.2
  _ZNK10QSGTexture9filteringEv@Qt_5 5.0.2
- (arch=hppa)_ZNK10QStringRef7compareE13QLatin1StringN2Qt15CaseSensitivityE@Qt_5 5.9.0
+ (optional=inline|arch=hppa sh4 x32)_ZNK10QStringRef7compareE13QLatin1StringN2Qt15CaseSensitivityE@Qt_5 5.9.1
  _ZNK11QQuickCurve10metaObjectEv@Qt_5_PRIVATE_API 5.9.0~beta 1
  _ZNK11QQuickCurve1xEv@Qt_5_PRIVATE_API 5.9.0~beta 1
  _ZNK11QQuickCurve1yEv@Qt_5_PRIVATE_API 5.9.0~beta 1
@@ -3872,6 +3907,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER#
  _ZNK19QQuickWindowPrivate19mergePointerTargetsERK7QVectorIP10QQuickItemES5_@Qt_5_PRIVATE_API 5.9.0~beta 1
  _ZNK19QQuickWindowPrivate20pointerEventInstanceEP19QQuickPointerDevice@Qt_5_PRIVATE_API 5.9.0 1
  _ZNK19QQuickWindowPrivate20pointerEventInstanceEP6QEvent@Qt_5_PRIVATE_API 5.9.0~beta 1
+ _ZNK19QQuickWindowPrivate25queryPointerEventInstanceEP19QQuickPointerDevice@Qt_5_PRIVATE_API 5.9.3
  _ZNK19QQuickWindowQmlImpl10metaObjectEv@Qt_5_PRIVATE_API 5.5.0 1
  _ZNK19QQuickWindowQmlImpl6screenEv@Qt_5_PRIVATE_API 5.9.0~beta 1
  _ZNK19QSGAbstractRenderer10clearColorEv@Qt_5 5.4.0
@@ -3917,6 +3953,14 @@ libQt5Quick.so.5 libqt5quick5 #MINVER#
  _ZNK20QQuickStateOperation10metaObjectEv@Qt_5_PRIVATE_API 5.0.2 1
  _ZNK20QQuickStateOperation5stateEv@Qt_5_PRIVATE_API 5.0.2 1
  _ZNK20QQuickTextureFactory5imageEv@Qt_5 5.0.2
+ _ZNK20QQuickWindowAttached10metaObjectEv@Qt_5_PRIVATE_API 5.9.2 1
+ _ZNK20QQuickWindowAttached10visibilityEv@Qt_5_PRIVATE_API 5.9.2 1
+ _ZNK20QQuickWindowAttached11contentItemEv@Qt_5_PRIVATE_API 5.9.2 1
+ _ZNK20QQuickWindowAttached15activeFocusItemEv@Qt_5_PRIVATE_API 5.9.2 1
+ _ZNK20QQuickWindowAttached5widthEv@Qt_5_PRIVATE_API 5.9.2 1
+ _ZNK20QQuickWindowAttached6heightEv@Qt_5_PRIVATE_API 5.9.2 1
+ _ZNK20QQuickWindowAttached6windowEv@Qt_5_PRIVATE_API 5.9.2 1
+ _ZNK20QQuickWindowAttached8isActiveEv@Qt_5_PRIVATE_API 5.9.2 1
  _ZNK20QSGFlatColorMaterial12createShaderEv@Qt_5 5.0.2
  _ZNK20QSGFlatColorMaterial4typeEv@Qt_5 5.0.2
  _ZNK20QSGFlatColorMaterial7compareEPK11QSGMaterial@Qt_5 5.0.2
@@ -4086,6 +4130,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER#
  _ZNK27QQuickKeyNavigationAttached5rightEv@Qt_5_PRIVATE_API 5.4.0 1
  _ZNK27QQuickKeyNavigationAttached7backtabEv@Qt_5_PRIVATE_API 5.4.0 1
  _ZNK27QQuickKeyNavigationAttached8priorityEv@Qt_5_PRIVATE_API 5.4.0 1
+ _ZNK27QSGAbstractSoftwareRenderer14renderableNodeEP7QSGNode@Qt_5_PRIVATE_API 5.9.3
  _ZNK27QSGDefaultInternalImageNode12supportsWrapERK5QSize@Qt_5_PRIVATE_API 5.9.0~beta 1
  _ZNK27QSGDefaultInternalImageNode15materialTextureEv@Qt_5_PRIVATE_API 5.9.0~beta 1
  _ZNK28QQuickOpenGLShaderEffectNode10metaObjectEv@Qt_5_PRIVATE_API 5.9.0~beta 1
@@ -4136,6 +4181,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER#
  _ZNK9QSGEngine19createRectangleNodeEv@Qt_5 5.9.0~beta
  _ZNK9QSGEngine19createTextureFromIdEjRK5QSize6QFlagsINS_19CreateTextureOptionEE@Qt_5 5.4.0
  _ZNK9QSGEngine22createTextureFromImageERK6QImage6QFlagsINS_19CreateTextureOptionEE@Qt_5 5.4.0
+ (optional=templinst|arch=armel armhf hurd-i386 i386 kfreebsd-i386 m68k mips mipsel powerpc powerpcspe)_ZSt4swapIN8QVariant7PrivateEENSt9enable_ifIXsrSt6__and_IJSt6__not_ISt15__is_tuple_likeIT_EESt21is_move_constructibleIS6_ESt18is_move_assignableIS6_EEE5valueEvE4typeERS6_SG_@Qt_5 5.9.1
  _ZTI10QQuickItem@Qt_5 5.0.2
  _ZTI10QQuickPath@Qt_5_PRIVATE_API 5.9.0~beta 1
  _ZTI10QQuickText@Qt_5_PRIVATE_API 5.0.2 1
@@ -4246,6 +4292,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER#
  _ZTI20QQuickPauseAnimation@Qt_5_PRIVATE_API 5.0.2 1
  _ZTI20QQuickStateOperation@Qt_5_PRIVATE_API 5.0.2 1
  _ZTI20QQuickTextureFactory@Qt_5 5.0.2
+ _ZTI20QQuickWindowAttached@Qt_5_PRIVATE_API 5.9.2 1
  _ZTI20QSGBasicGeometryNode@Qt_5 5.0.2
  _ZTI20QSGFlatColorMaterial@Qt_5 5.0.2
  _ZTI20QSGInternalImageNode@Qt_5_PRIVATE_API 5.9.0~beta 1
@@ -4300,6 +4347,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER#
  _ZTI26QSGContextFactoryInterface@Qt_5_PRIVATE_API 5.0.2 1
  _ZTI26QSGDistanceFieldGlyphCache@Qt_5_PRIVATE_API 5.0.2 1
  _ZTI27QQuickKeyNavigationAttached@Qt_5_PRIVATE_API 5.4.0 1
+ _ZTI27QSGAbstractSoftwareRenderer@Qt_5_PRIVATE_API 5.9.3
  _ZTI27QSGDefaultInternalImageNode@Qt_5_PRIVATE_API 5.9.0~beta 1
  _ZTI28QQuickOpenGLShaderEffectNode@Qt_5_PRIVATE_API 5.9.0~beta 1
  _ZTI28QSGDistanceFieldTextMaterial@Qt_5_PRIVATE_API 5.0.2 1
@@ -4438,6 +4486,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER#
  _ZTS20QQuickPauseAnimation@Qt_5_PRIVATE_API 5.0.2 1
  _ZTS20QQuickStateOperation@Qt_5_PRIVATE_API 5.0.2 1
  _ZTS20QQuickTextureFactory@Qt_5 5.0.2
+ _ZTS20QQuickWindowAttached@Qt_5_PRIVATE_API 5.9.2 1
  _ZTS20QSGBasicGeometryNode@Qt_5 5.0.2
  _ZTS20QSGFlatColorMaterial@Qt_5 5.0.2
  _ZTS20QSGInternalImageNode@Qt_5_PRIVATE_API 5.9.0~beta 1
@@ -4492,6 +4541,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER#
  _ZTS26QSGContextFactoryInterface@Qt_5_PRIVATE_API 5.0.2 1
  _ZTS26QSGDistanceFieldGlyphCache@Qt_5_PRIVATE_API 5.0.2 1
  _ZTS27QQuickKeyNavigationAttached@Qt_5_PRIVATE_API 5.4.0 1
+ _ZTS27QSGAbstractSoftwareRenderer@Qt_5_PRIVATE_API 5.9.3
  _ZTS27QSGDefaultInternalImageNode@Qt_5_PRIVATE_API 5.9.0~beta 1
  _ZTS28QQuickOpenGLShaderEffectNode@Qt_5_PRIVATE_API 5.9.0~beta 1
  _ZTS28QSGDistanceFieldTextMaterial@Qt_5_PRIVATE_API 5.0.2 1
@@ -4624,6 +4674,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER#
  _ZTV20QQuickPauseAnimation@Qt_5_PRIVATE_API 5.0.2 1
  _ZTV20QQuickStateOperation@Qt_5_PRIVATE_API 5.0.2 1
  _ZTV20QQuickTextureFactory@Qt_5 5.0.2
+ _ZTV20QQuickWindowAttached@Qt_5_PRIVATE_API 5.9.2 1
  _ZTV20QSGBasicGeometryNode@Qt_5 5.0.2
  _ZTV20QSGFlatColorMaterial@Qt_5 5.0.2
  _ZTV20QSGRendererInterface@Qt_5 5.9.0~beta
@@ -4676,6 +4727,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER#
  _ZTV26QSGContextFactoryInterface@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZTV26QSGDistanceFieldGlyphCache@Qt_5_PRIVATE_API 5.0.2 1
  _ZTV27QQuickKeyNavigationAttached@Qt_5_PRIVATE_API 5.4.0 1
+ _ZTV27QSGAbstractSoftwareRenderer@Qt_5_PRIVATE_API 5.9.3
  _ZTV27QSGDefaultInternalImageNode@Qt_5_PRIVATE_API 5.9.0~beta 1
  _ZTV28QQuickOpenGLShaderEffectNode@Qt_5_PRIVATE_API 5.9.0~beta 1
  _ZTV28QSGDistanceFieldTextMaterial@Qt_5_PRIVATE_API 5.0.2 1

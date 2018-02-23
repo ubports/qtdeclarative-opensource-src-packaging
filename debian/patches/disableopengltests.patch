@@ -27,7 +27,7 @@ Last-Update: 2017-04-24
      qqmlenginecontrol \
 --- a/tests/auto/qml/qml.pro
 +++ b/tests/auto/qml/qml.pro
-@@ -24,7 +24,6 @@
+@@ -24,7 +24,6 @@ PUBLICTESTS += \
      qqmlmoduleplugin \
      qqmlnotifier \
      qqmlqt \
@@ -35,7 +35,7 @@ Last-Update: 2017-04-24
      qtqmlmodules \
      qquickfolderlistmodel \
      qqmlapplicationengine \
-@@ -88,10 +87,6 @@
+@@ -88,10 +87,6 @@ qtConfig(process):!boot2qt {
      SUBDIRS += qmllint qmlplugindump
  }
  
@@ -48,7 +48,7 @@ Last-Update: 2017-04-24
  
 --- a/tests/auto/quick/quick.pro
 +++ b/tests/auto/quick/quick.pro
-@@ -6,9 +6,7 @@
+@@ -6,9 +6,7 @@ PUBLICTESTS += \
  
  qtConfig(opengl(es1|es2)?) {
      PUBLICTESTS += \
