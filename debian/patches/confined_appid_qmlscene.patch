@@ -1,0 +1,98 @@
+Description: Patch qmlscene to work in confined environment
+ Ubuntu Touch's app confinement doesn't play nicely with the qml caching
+ and caused apparmor denials until the application was loaded and the 
+ application name was overridden. This patch sets the required data to work
+ within confinement and prevent the denials. Which allows apps to have caching on
+ launch. 
+Author: Dan Chapman <dan@ubports.com>
+Bug: https://github.com/ubports/ubuntu-touch/issues/439
+Last-Update: 2018-03-15
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+--- a/tools/qmlscene/main.cpp
++++ b/tools/qmlscene/main.cpp
+@@ -434,6 +434,69 @@ static QUrl parseUrlArgument(const QStri
+     return url;
+ }
+ 
++/**
++ * For Ubuntu Touch we want the first
++ * part (before the first '_') of the APP_ID
++ * to use as the application name.
++ *
++ * If no APP_ID is set return the default QtQmlViewer
++ */
++static QString getAppName()
++{
++    const QByteArray rawId = qgetenv("APP_ID");
++    if (!rawId.isEmpty()) {
++        QString appId = QString::fromLatin1(rawId);
++        return appId.split('_').first();
++    }
++    return QStringLiteral("QtQmlViewer");
++}
++
++/**
++ * For Ubuntu Touch we want the organisation name to be empty.
++ * due to how we combine it all in the applicationName
++ *
++ * If no APP_ID is set return the default QtProject
++ */
++static QString getOrgName()
++{
++    if (!qgetenv("APP_ID").isEmpty()) {
++        return QStringLiteral("");
++    }
++    return QStringLiteral("QtProject");
++}
++
++/**
++ * For Ubuntu Touch organisation domain should match the
++ * applicationName so that storage ends up in an allowed
++ * location
++ *
++ * If no APP_ID is set return the default qt-project.org
++ */
++static QString getOrgDomain()
++{
++    if (!qgetenv("APP_ID").isEmpty()) {
++        return getAppName();
++    }
++    return QStringLiteral("qt-project.org");
++}
++
++/**
++ * For Ubuntu Touch we want the last
++ * part (after the last '_') of the APP_ID
++ * to use as the application version.
++ *
++ * If no APP_ID is set return the default QT_VERSION_STR
++ */
++static QString getAppVersion()
++{
++    const QByteArray rawId = qgetenv("APP_ID");
++    if (!rawId.isEmpty()) {
++        QString appId = QString::fromLatin1(rawId);
++        return appId.split('_').last();
++    }
++    return QStringLiteral(QT_VERSION_STR);
++}
++
+ int main(int argc, char ** argv)
+ {
+     Options options;
+@@ -465,10 +528,10 @@ int main(int argc, char ** argv)
+ #else
+     QGuiApplication app(argc, argv);
+ #endif
+-    app.setApplicationName("QtQmlViewer");
+-    app.setOrganizationName("QtProject");
+-    app.setOrganizationDomain("qt-project.org");
+-    QCoreApplication::setApplicationVersion(QLatin1String(QT_VERSION_STR));
++    app.setApplicationName(getAppName());
++    app.setOrganizationName(getOrgName());
++    app.setOrganizationDomain(getOrgDomain());
++    QCoreApplication::setApplicationVersion(getAppVersion());
+ 
+     const QStringList arguments = QCoreApplication::arguments();
+     for (int i = 1, size = arguments.size(); i < size; ++i) {
