@@ -1,6 +1,7 @@
 # Backported patches
 
 # Debian patches
+confined_appid_qmlscene.patch
 disableopengltests.patch
 fix_test_remove_qlibraryinfo.patch
 Do-not-make-lack-of-SSE2-support-on-x86-32-fatal.patch

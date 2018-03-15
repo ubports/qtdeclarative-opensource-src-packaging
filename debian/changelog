@@ -1,3 +1,9 @@
+qtdeclarative-opensource-src (5.9.3+ubports1) xenial; urgency=medium
+
+  * Patch qmlscene to work in confinement
+
+ -- Dan Chapman <dan@ubports.com>  Thu, 15 Mar 2018 10:38:00 +0000
+
 qtdeclarative-opensource-src (5.9.3+ubports) xenial; urgency=medium
 
   * Import to 5.9.3 to ubports
