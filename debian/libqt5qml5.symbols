@@ -1,6 +1,6 @@
-# SymbolsHelper-Confirmed: 5.9.3 amd64 arm64 armhf i386 ppc64el s390x
+# SymbolsHelper-Confirmed: 5.9.5 amd64 arm64 armhf i386 ppc64el s390x
 libQt5Qml.so.5 libqt5qml5 #MINVER#
-| libqt5qml5 #MINVER#, qtdeclarative-abi-5-9-3
+| libqt5qml5 #MINVER#, qtdeclarative-abi-5-9-5
  Qt_5.0@Qt_5.0 5.6.0~beta
  Qt_5.1@Qt_5.1 5.6.0~beta
  Qt_5.2@Qt_5.2 5.6.0~beta
@@ -16,6 +16,7 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  _Z10qmlContextPK7QObject@Qt_5 5.0.2
  _Z16qmlProtectModulePKci@Qt_5 5.2.0~beta1
  _Z17qmlRegisterModulePKcii@Qt_5 5.9.0~beta
+ _Z17qmlUnregisterTypei@Qt_5 5.9.4
  _Z18QQml_colorProviderv@Qt_5 5.0.2
  _Z18qmlExecuteDeferredP7QObject@Qt_5 5.0.2
  _Z19QQml_setGuiProviderP15QQmlGuiProvider@Qt_5_PRIVATE_API 5.0.2 1
@@ -140,6 +141,7 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  _ZN11QQmlImports19completeQmldirPathsERK7QStringRK11QStringListii@Qt_5_PRIVATE_API 5.7.0 1
  _ZN11QQmlImports19updateQmldirContentEP18QQmlImportDatabaseRK7QStringS4_S4_S4_P5QListI9QQmlErrorE@Qt_5_PRIVATE_API 5.0.2 1
  _ZN11QQmlImports26setDesignerSupportRequiredEb@Qt_5_PRIVATE_API 5.4.0 1
+ _ZN11QQmlImports26urlFromLocalFileOrQrcOrUrlERK7QString@Qt_5_PRIVATE_API 5.9.4 1
  _ZN11QQmlImports7isLocalERK4QUrl@Qt_5_PRIVATE_API 5.0.2 1
  _ZN11QQmlImports7isLocalERK7QString@Qt_5_PRIVATE_API 5.0.2 1
  _ZN11QQmlImportsC1EP14QQmlTypeLoader@Qt_5_PRIVATE_API 5.0.2 1
@@ -510,13 +512,14 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  _ZN15QQmlObjectModel11qt_metacastEPKc@Qt_5_PRIVATE_API 5.1.0 1
  _ZN15QQmlObjectModel11stringValueEiRK7QString@Qt_5_PRIVATE_API 5.1.0 1
  _ZN15QQmlObjectModel15childrenChangedEv@Qt_5_PRIVATE_API 5.1.0 1
+ _ZN15QQmlObjectModel16incubationStatusEi@Qt_5_PRIVATE_API 5.9.4 1
  _ZN15QQmlObjectModel16staticMetaObjectE@Qt_5_PRIVATE_API 5.1.0 1
  _ZN15QQmlObjectModel21qmlAttachedPropertiesEP7QObject@Qt_5_PRIVATE_API 5.1.0 1
  _ZN15QQmlObjectModel4moveEiii@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZN15QQmlObjectModel5clearEv@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZN15QQmlObjectModel6appendEP7QObject@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZN15QQmlObjectModel6insertEiP7QObject@Qt_5_PRIVATE_API 5.6.0~beta 1
- _ZN15QQmlObjectModel6objectEib@Qt_5_PRIVATE_API 5.1.0 1
+ _ZN15QQmlObjectModel6objectEiN13QQmlIncubator14IncubationModeE@Qt_5_PRIVATE_API 5.9.4 1
  _ZN15QQmlObjectModel6removeEii@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZN15QQmlObjectModel7releaseEP7QObject@Qt_5_PRIVATE_API 5.1.0 1
  _ZN15QQmlObjectModel8childrenEv@Qt_5_PRIVATE_API 5.1.0 1
@@ -627,6 +630,7 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  _ZN17QQmlDelegateModel15setWatchedRolesERK5QListI10QByteArrayE@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZN17QQmlDelegateModel16_q_itemsInsertedEii@Qt_5_PRIVATE_API 5.1.0 1
  _ZN17QQmlDelegateModel16_q_layoutChangedERK5QListI21QPersistentModelIndexEN18QAbstractItemModel16LayoutChangeHintE@Qt_5_PRIVATE_API 5.3.1 1
+ _ZN17QQmlDelegateModel16incubationStatusEi@Qt_5_PRIVATE_API 5.9.4 1
  _ZN17QQmlDelegateModel16resetFilterGroupEv@Qt_5_PRIVATE_API 5.1.0 1
  _ZN17QQmlDelegateModel16rootIndexChangedEv@Qt_5_PRIVATE_API 5.1.0 1
  _ZN17QQmlDelegateModel16staticMetaObjectE@Qt_5_PRIVATE_API 5.1.0 1
@@ -640,7 +644,7 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  _ZN17QQmlDelegateModel5partsEv@Qt_5_PRIVATE_API 5.1.0 1
  _ZN17QQmlDelegateModel6cancelEi@Qt_5_PRIVATE_API 5.1.0 1
  _ZN17QQmlDelegateModel6groupsEv@Qt_5_PRIVATE_API 5.1.0 1
- _ZN17QQmlDelegateModel6objectEib@Qt_5_PRIVATE_API 5.1.0 1
+ _ZN17QQmlDelegateModel6objectEiN13QQmlIncubator14IncubationModeE@Qt_5_PRIVATE_API 5.9.4 1
  _ZN17QQmlDelegateModel7releaseEP7QObject@Qt_5_PRIVATE_API 5.1.0 1
  _ZN17QQmlDelegateModel8setModelERK8QVariant@Qt_5_PRIVATE_API 5.1.0 1
  _ZN17QQmlDelegateModelC1EP11QQmlContextP7QObject@Qt_5_PRIVATE_API 5.1.0 1
@@ -701,6 +705,26 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  _ZN17QQmlListReferenceD1Ev@Qt_5 5.0.2
  _ZN17QQmlListReferenceD2Ev@Qt_5 5.0.2
  _ZN17QQmlListReferenceaSERKS_@Qt_5 5.0.2
+ _ZN17QQmlObjectCreator11recordErrorERKN3QV412CompiledData8LocationERK7QString@Qt_5_PRIVATE_API 5.9.4 1
+ _ZN17QQmlObjectCreator13setupBindingsEb@Qt_5_PRIVATE_API 5.9.4 1
+ _ZN17QQmlObjectCreator14createInstanceEiP7QObjectb@Qt_5_PRIVATE_API 5.9.4 1
+ _ZN17QQmlObjectCreator14setupFunctionsEv@Qt_5_PRIVATE_API 5.9.4 1
+ _ZN17QQmlObjectCreator16createQmlContextEv@Qt_5_PRIVATE_API 5.9.5 1
+ _ZN17QQmlObjectCreator16populateInstanceEiP7QObjectS1_PK16QQmlPropertyData@Qt_5_PRIVATE_API 5.9.4 1
+ _ZN17QQmlObjectCreator16setPropertyValueEPK16QQmlPropertyDataPKN3QV412CompiledData7BindingE@Qt_5_PRIVATE_API 5.9.4 1
+ _ZN17QQmlObjectCreator18setPropertyBindingEPK16QQmlPropertyDataPKN3QV412CompiledData7BindingE@Qt_5_PRIVATE_API 5.9.4 1
+ _ZN17QQmlObjectCreator23populateDeferredBindingERK12QQmlPropertyPN8QQmlData12DeferredDataEPKN3QV412CompiledData7BindingE@Qt_5_PRIVATE_API 5.9.4 1
+ _ZN17QQmlObjectCreator26populateDeferredPropertiesEP7QObjectPN8QQmlData12DeferredDataE@Qt_5_PRIVATE_API 5.9.4 1
+ _ZN17QQmlObjectCreator4initEP15QQmlContextData@Qt_5_PRIVATE_API 5.9.4 1
+ _ZN17QQmlObjectCreator5clearEv@Qt_5_PRIVATE_API 5.9.4 1
+ _ZN17QQmlObjectCreator6createEiP7QObjectP26QQmlInstantiationInterrupt@Qt_5_PRIVATE_API 5.9.4 1
+ _ZN17QQmlObjectCreator8finalizeER26QQmlInstantiationInterrupt@Qt_5_PRIVATE_API 5.9.4 1
+ _ZN17QQmlObjectCreatorC1EP15QQmlContextDataPN3QV412CompiledData15CompilationUnitEP28QQmlObjectCreatorSharedState@Qt_5_PRIVATE_API 5.9.4 1
+ _ZN17QQmlObjectCreatorC1EP15QQmlContextDataPN3QV412CompiledData15CompilationUnitES1_P20QQmlIncubatorPrivate@Qt_5_PRIVATE_API 5.9.4 1
+ _ZN17QQmlObjectCreatorC2EP15QQmlContextDataPN3QV412CompiledData15CompilationUnitEP28QQmlObjectCreatorSharedState@Qt_5_PRIVATE_API 5.9.4 1
+ _ZN17QQmlObjectCreatorC2EP15QQmlContextDataPN3QV412CompiledData15CompilationUnitES1_P20QQmlIncubatorPrivate@Qt_5_PRIVATE_API 5.9.4 1
+ _ZN17QQmlObjectCreatorD1Ev@Qt_5_PRIVATE_API 5.9.4 1
+ _ZN17QQmlObjectCreatorD2Ev@Qt_5_PRIVATE_API 5.9.4 1
  _ZN17QQmlPropertyCache10invalidateEPK11QMetaObject@Qt_5_PRIVATE_API 5.5.0 1
  _ZN17QQmlPropertyCache11updateRecurEPK11QMetaObject@Qt_5_PRIVATE_API 5.5.0 1
  _ZN17QQmlPropertyCache12appendMethodERK7QStringN19QQmlPropertyRawData5FlagsEiRK5QListI10QByteArrayE@Qt_5_PRIVATE_API 5.9.0~beta 1
@@ -881,6 +905,7 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  _ZN19QQmlPropertyPrivate20takeSignalExpressionERK12QQmlPropertyP25QQmlBoundSignalExpression@Qt_5_PRIVATE_API 5.0.2 1
  _ZN19QQmlPropertyPrivate5writeEP7QObjectRK16QQmlPropertyDataRK8QVariantP15QQmlContextData6QFlagsINS2_9WriteFlagEE@Qt_5_PRIVATE_API 5.9.0~beta 1
  _ZN19QQmlPropertyPrivate5writeERK12QQmlPropertyRK8QVariant6QFlagsIN16QQmlPropertyData9WriteFlagEE@Qt_5_PRIVATE_API 5.9.0~beta 1
+ _ZN19QQmlPropertyPrivate6createEP7QObjectRK7QStringP15QQmlContextData@Qt_5_PRIVATE_API 5.9.5 1
  _ZN19QQmlPropertyPrivate7bindingEP7QObject17QQmlPropertyIndex@Qt_5_PRIVATE_API 5.9.0~beta 1
  _ZN19QQmlPropertyPrivate7bindingERK12QQmlProperty@Qt_5_PRIVATE_API 5.0.2 1
  _ZN19QQmlPropertyPrivate7connectEPK7QObjectiS2_iiPi@Qt_5_PRIVATE_API 5.0.2 1
@@ -893,10 +918,10 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  _ZN20QDebugMessageService5s_keyE@Qt_5_PRIVATE_API 5.7.0 1
  _ZN20QQmlComponentPrivate11beginCreateEP15QQmlContextData@Qt_5_PRIVATE_API 5.0.2 1
  _ZN20QQmlComponentPrivate12fromTypeDataEP12QQmlTypeData@Qt_5_PRIVATE_API 5.0.2 1
- _ZN20QQmlComponentPrivate13beginDeferredEP17QQmlEnginePrivateP7QObjectPNS_13DeferredStateE@Qt_5_PRIVATE_API 5.9.3
+ _ZN20QQmlComponentPrivate13beginDeferredEP17QQmlEnginePrivateP7QObjectPNS_13DeferredStateE@Qt_5_PRIVATE_API 5.9.3 1
  _ZN20QQmlComponentPrivate13typeDataReadyEP12QQmlTypeData@Qt_5_PRIVATE_API 5.0.2 1
  _ZN20QQmlComponentPrivate14completeCreateEv@Qt_5_PRIVATE_API 5.0.2 1
- _ZN20QQmlComponentPrivate16completeDeferredEP17QQmlEnginePrivatePNS_13DeferredStateE@Qt_5_PRIVATE_API 5.9.3
+ _ZN20QQmlComponentPrivate16completeDeferredEP17QQmlEnginePrivatePNS_13DeferredStateE@Qt_5_PRIVATE_API 5.9.3 1
  _ZN20QQmlComponentPrivate16typeDataProgressEP12QQmlTypeDatad@Qt_5_PRIVATE_API 5.2.0 1
  _ZN20QQmlComponentPrivate20setInitialPropertiesEPN3QV415ExecutionEngineEPNS0_10QmlContextERKNS0_5ValueES7_@Qt_5_PRIVATE_API 5.9.0~beta 1
  _ZN20QQmlComponentPrivate37initializeObjectWithInitialPropertiesEPN3QV410QmlContextERKNS0_5ValueEP7QObject@Qt_5_PRIVATE_API 5.6.1 1
@@ -913,7 +938,6 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  _ZN20QQmlDebuggingEnabler22nativeDebuggerServicesEv@Qt_5 5.9.0~beta
  _ZN20QQmlDebuggingEnablerC1Eb@Qt_5 5.0.2
  _ZN20QQmlDebuggingEnablerC2Eb@Qt_5 5.0.2
- _ZN20QQmlIncubatorPrivate6cancelEP7QObjectP11QQmlContext@Qt_5 5.9.0~beta
  _ZN20QQmlInspectorService11qt_metacallEN11QMetaObject4CallEiPPv@Qt_5_PRIVATE_API 5.0.2 1
  _ZN20QQmlInspectorService11qt_metacastEPKc@Qt_5_PRIVATE_API 5.0.2 1
  _ZN20QQmlInspectorService16staticMetaObjectE@Qt_5_PRIVATE_API 5.0.2 1
@@ -1509,6 +1533,7 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  _ZN3QV424EvalInstructionSelectionD2Ev@Qt_5_PRIVATE_API 5.3.0 1
  _ZN3QV42IR6Module11newFunctionERK7QStringPNS0_8FunctionE@Qt_5_PRIVATE_API 5.3.0 1
  _ZN3QV42IR6Module11setFileNameERK7QString@Qt_5_PRIVATE_API 5.3.0 1
+ _ZN3QV42IR6Module11setFinalUrlERK7QString@Qt_5_PRIVATE_API 5.9.4 1
  _ZN3QV42IR6ModuleD1Ev@Qt_5_PRIVATE_API 5.3.0 1
  _ZN3QV42IR6ModuleD2Ev@Qt_5_PRIVATE_API 5.3.0 1
  _ZN3QV42IR9IRDecoder11callBuiltinEPNS0_4CallEPNS0_4ExprE@Qt_5_PRIVATE_API 5.4.0 1
@@ -2002,7 +2027,7 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  _ZN3QV46Object9getLengthEPKNS_7ManagedE@Qt_5_PRIVATE_API 5.3.0 1
  _ZN3QV46Object9getLookupEPKNS_7ManagedEPNS_6LookupE@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZN3QV46Object9setLookupEPNS_7ManagedEPNS_6LookupERKNS_5ValueE@Qt_5_PRIVATE_API 5.5.0 1
- _ZN3QV46Script10precompileEPNS_2IR6ModuleEPNS_8Compiler15JSUnitGeneratorEPNS_15ExecutionEngineERK4QUrlRK7QStringP5QListI9QQmlErrorEPN6QQmlJS10DirectivesE@Qt_5_PRIVATE_API 5.5.0 1
+ _ZN3QV46Script10precompileEPNS_2IR6ModuleEPNS_8Compiler15JSUnitGeneratorEPNS_15ExecutionEngineERK7QStringSB_SB_P5QListI9QQmlErrorEPN6QQmlJS10DirectivesE@Qt_5_PRIVATE_API 5.9.4 1
  _ZN3QV46Script3runEv@Qt_5_PRIVATE_API 5.2.0~beta1 1
  _ZN3QV46Script5parseEv@Qt_5_PRIVATE_API 5.2.0~beta1 1
  _ZN3QV46Script8evaluateEPNS_15ExecutionEngineERK7QStringPNS_10QmlContextE@Qt_5_PRIVATE_API 5.6.0~beta 1
@@ -2234,8 +2259,8 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  _ZN5QmlIR9JSCodeGen21beginFunctionBodyHookEv@Qt_5_PRIVATE_API 5.3.0 1
  _ZN5QmlIR9JSCodeGen26lookupQmlCompliantPropertyEP17QQmlPropertyCacheRK7QStringPb@Qt_5_PRIVATE_API 5.3.0 1
  _ZN5QmlIR9JSCodeGen37generateJSCodeForFunctionsAndBindingsERK5QListINS_28CompiledFunctionOrExpressionEE@Qt_5_PRIVATE_API 5.3.0 1
- _ZN5QmlIR9JSCodeGenC1ERK7QStringS3_PN3QV42IR6ModuleEPN6QQmlJS6EngineEPNS8_3AST9UiProgramEP17QQmlTypeNameCachePKNS4_8Compiler20StringTableGeneratorE@Qt_5_PRIVATE_API 5.3.0 1
- _ZN5QmlIR9JSCodeGenC2ERK7QStringS3_PN3QV42IR6ModuleEPN6QQmlJS6EngineEPNS8_3AST9UiProgramEP17QQmlTypeNameCachePKNS4_8Compiler20StringTableGeneratorE@Qt_5_PRIVATE_API 5.3.0 1
+ _ZN5QmlIR9JSCodeGenC1ERK7QStringS3_S3_PN3QV42IR6ModuleEPN6QQmlJS6EngineEPNS8_3AST9UiProgramEP17QQmlTypeNameCachePKNS4_8Compiler20StringTableGeneratorERK4QSetIS1_E@Qt_5_PRIVATE_API 5.9.5 1
+ _ZN5QmlIR9JSCodeGenC2ERK7QStringS3_S3_PN3QV42IR6ModuleEPN6QQmlJS6EngineEPNS8_3AST9UiProgramEP17QQmlTypeNameCachePKNS4_8Compiler20StringTableGeneratorERK4QSetIS1_E@Qt_5_PRIVATE_API 5.9.5 1
  _ZN5QtQml10qmlContextEPK7QObject@Qt_5 5.1.0
  _ZN5QtQml10qmlWarningEPK7QObject@Qt_5 5.9.0~beta
  _ZN5QtQml10qmlWarningEPK7QObjectRK5QListI9QQmlErrorE@Qt_5 5.9.0~beta
@@ -2439,11 +2464,11 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  _ZN6QQmlJS7Codegen16leaveEnvironmentEv@Qt_5_PRIVATE_API 5.2.0~beta1 1
  _ZN6QQmlJS7Codegen16throwSyntaxErrorERKNS_3AST14SourceLocationERK7QString@Qt_5_PRIVATE_API 5.2.0~beta1 1
  _ZN6QQmlJS7Codegen18fallbackNameLookupERK7QStringii@Qt_5_PRIVATE_API 5.2.0~rc1 1
- _ZN6QQmlJS7Codegen19generateFromProgramERK7QStringS3_PNS_3AST7ProgramEPN3QV42IR6ModuleENS0_15CompilationModeERK11QStringList@Qt_5_PRIVATE_API 5.3.0 1
+ _ZN6QQmlJS7Codegen19generateFromProgramERK7QStringS3_S3_PNS_3AST7ProgramEPN3QV42IR6ModuleENS0_15CompilationModeERK11QStringList@Qt_5_PRIVATE_API 5.9.4 1
  _ZN6QQmlJS7Codegen19throwReferenceErrorERKNS_3AST14SourceLocationERK7QString@Qt_5_PRIVATE_API 5.2.0~beta1 1
  _ZN6QQmlJS7Codegen19variableDeclarationEPNS_3AST19VariableDeclarationE@Qt_5_PRIVATE_API 5.2.0~beta1 1
  _ZN6QQmlJS7Codegen23variableDeclarationListEPNS_3AST23VariableDeclarationListE@Qt_5_PRIVATE_API 5.2.0~beta1 1
- _ZN6QQmlJS7Codegen30generateFromFunctionExpressionERK7QStringS3_PNS_3AST18FunctionExpressionEPN3QV42IR6ModuleE@Qt_5_PRIVATE_API 5.3.0 1
+ _ZN6QQmlJS7Codegen30generateFromFunctionExpressionERK7QStringS3_S3_PNS_3AST18FunctionExpressionEPN3QV42IR6ModuleE@Qt_5_PRIVATE_API 5.9.4 1
  _ZN6QQmlJS7Codegen45throwSyntaxErrorOnEvalOrArgumentsInStrictModeEPN3QV42IR4ExprERKNS_3AST14SourceLocationE@Qt_5_PRIVATE_API 5.3.0 1
  _ZN6QQmlJS7Codegen4callEPN3QV42IR4ExprEPNS2_8ExprListE@Qt_5_PRIVATE_API 5.3.0 1
  _ZN6QQmlJS7Codegen4moveEPN3QV42IR4ExprES4_NS2_5AluOpE@Qt_5_PRIVATE_API 5.3.0 1
@@ -2587,6 +2612,10 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  _ZN8QJSValueaSERKS_@Qt_5 5.0.2
  _ZN8QQmlData10NotifyList6layoutEP20QQmlNotifierEndpoint@Qt_5_PRIVATE_API 5.0.2 1
  _ZN8QQmlData10NotifyList6layoutEv@Qt_5_PRIVATE_API 5.0.2 1
+ _ZN8QQmlData12DeferredDataC1Ev@Qt_5_PRIVATE_API 5.9.5 1
+ _ZN8QQmlData12DeferredDataC2Ev@Qt_5_PRIVATE_API 5.9.5 1
+ _ZN8QQmlData12DeferredDataD1Ev@Qt_5_PRIVATE_API 5.9.5 1
+ _ZN8QQmlData12DeferredDataD2Ev@Qt_5_PRIVATE_API 5.9.5 1
  _ZN8QQmlData13endpointCountEi@Qt_5_PRIVATE_API 5.0.2 1
  _ZN8QQmlData13markAsDeletedEP7QObject@Qt_5_PRIVATE_API 5.0.2 1
  _ZN8QQmlData13parentChangedEP24QAbstractDeclarativeDataP7QObjectS3_@Qt_5_PRIVATE_API 5.0.2 1
@@ -2598,17 +2627,20 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  _ZN8QQmlData17isSignalConnectedEP24QAbstractDeclarativeDataPK7QObjecti@Qt_5_PRIVATE_API 5.0.2 1
  _ZN8QQmlData19createPropertyCacheEP9QJSEngineP7QObject@Qt_5_PRIVATE_API 5.9.0~beta 1
  _ZN8QQmlData19disconnectNotifiersEv@Qt_5_PRIVATE_API 5.0.2 1
- _ZN8QQmlData19releaseDeferredDataEv@Qt_5_PRIVATE_API 5.9.3
+ _ZN8QQmlData19releaseDeferredDataEv@Qt_5_PRIVATE_API 5.9.3 1
  _ZN8QQmlData20setPendingBindingBitEP7QObjecti@Qt_5_PRIVATE_API 5.0.2 1
  _ZN8QQmlData20setQueuedForDeletionEP7QObject@Qt_5_PRIVATE_API 5.0.2 1
  _ZN8QQmlData22clearPendingBindingBitEi@Qt_5_PRIVATE_API 5.0.2 1
  _ZN8QQmlData23flushPendingBindingImplE17QQmlPropertyIndex@Qt_5_PRIVATE_API 5.9.0~beta 1
  _ZN8QQmlData9addNotifyEiP20QQmlNotifierEndpoint@Qt_5_PRIVATE_API 5.0.2 1
+ _ZN8QQmlData9deferDataEiPN3QV412CompiledData15CompilationUnitEP15QQmlContextData@Qt_5_PRIVATE_API 5.9.4 1
  _ZN8QQmlData9destroyedEP24QAbstractDeclarativeDataP7QObject@Qt_5_PRIVATE_API 5.0.2 1
  _ZN8QQmlData9destroyedEP7QObject@Qt_5_PRIVATE_API 5.0.2 1
  _ZN8QQmlData9receiversEP24QAbstractDeclarativeDataPK7QObjecti@Qt_5_PRIVATE_API 5.0.2 1
  _ZN8QQmlDataC1Ev@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZN8QQmlDataC2Ev@Qt_5_PRIVATE_API 5.6.0~beta 1
+ _ZN8QQmlDataD1Ev@Qt_5_PRIVATE_API 5.9.5 1
+ _ZN8QQmlDataD2Ev@Qt_5_PRIVATE_API 5.9.5 1
  _ZN8QQmlFile11isLocalFileERK4QUrl@Qt_5 5.0.2
  _ZN8QQmlFile11isLocalFileERK7QString@Qt_5 5.0.2
  _ZN8QQmlFile13isSynchronousERK4QUrl@Qt_5 5.0.2
@@ -2762,8 +2794,8 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  _ZNK11QQmlContext6engineEv@Qt_5 5.0.2
  _ZNK11QQmlContext7baseUrlEv@Qt_5 5.0.2
  _ZNK11QQmlContext7isValidEv@Qt_5 5.0.2
- _ZNK11QQmlImports11resolveTypeEP19QQmlImportNamespaceRK16QHashedStringRefP8QQmlTypePiS7_NS5_16RegistrationTypeE@Qt_5_PRIVATE_API 5.9.3
- _ZNK11QQmlImports11resolveTypeERK16QHashedStringRefP8QQmlTypePiS5_PP19QQmlImportNamespaceP5QListI9QQmlErrorENS3_16RegistrationTypeE@Qt_5_PRIVATE_API 5.9.3
+ _ZNK11QQmlImports11resolveTypeEP19QQmlImportNamespaceRK16QHashedStringRefP8QQmlTypePiS7_NS5_16RegistrationTypeE@Qt_5_PRIVATE_API 5.9.3 1
+ _ZNK11QQmlImports11resolveTypeERK16QHashedStringRefP8QQmlTypePiS5_PP19QQmlImportNamespaceP5QListI9QQmlErrorENS3_16RegistrationTypeE@Qt_5_PRIVATE_API 5.9.3 1
  _ZNK11QQmlImports13populateCacheEP17QQmlTypeNameCache@Qt_5_PRIVATE_API 5.0.2 1
  _ZNK11QQmlImports15resolvedScriptsEv@Qt_5_PRIVATE_API 5.0.2 1
  _ZNK11QQmlImports27resolvedCompositeSingletonsEv@Qt_5_PRIVATE_API 5.2.0~beta1 1
@@ -2784,6 +2816,7 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  _ZNK12QQmlDataBlob8progressEv@Qt_5_PRIVATE_API 5.0.2 1
  _ZNK12QQmlDataBlob9isLoadingEv@Qt_5_PRIVATE_API 5.0.2 1
  _ZNK12QQmlDataBlob9isWaitingEv@Qt_5_PRIVATE_API 5.0.2 1
+ _ZNK12QQmlDataBlob9urlStringEv@Qt_5_PRIVATE_API 5.9.4 1
  _ZNK12QQmlPlatform10metaObjectEv@Qt_5_PRIVATE_API 5.1.0 1
  _ZNK12QQmlProfiler10metaObjectEv@Qt_5_PRIVATE_API 5.9.0~beta 1
  _ZNK12QQmlProperty10isPropertyEv@Qt_5 5.0.2
@@ -2948,6 +2981,7 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  _ZNK17QQmlListReference8canClearEv@Qt_5 5.0.2
  _ZNK17QQmlListReference8canCountEv@Qt_5 5.0.2
  _ZNK17QQmlListReference9canAppendEv@Qt_5 5.0.2
+ _ZNK17QQmlObjectCreator29registerObjectWithContextByIdEPKN3QV412CompiledData6ObjectEP7QObject@Qt_5_PRIVATE_API 5.9.4 1
  _ZNK17QQmlPropertyCache12findPropertyEN11QStringHashI5QPairIiP16QQmlPropertyDataEE13ConstIteratorEP7QObjectP15QQmlContextData@Qt_5_PRIVATE_API 5.0.2 1
  _ZNK17QQmlPropertyCache12findPropertyEN11QStringHashI5QPairIiP16QQmlPropertyDataEE13ConstIteratorEPK17QQmlVMEMetaObjectP15QQmlContextData@Qt_5_PRIVATE_API 5.0.2 1
  _ZNK17QQmlPropertyCache15defaultPropertyEv@Qt_5_PRIVATE_API 5.0.2 1
@@ -3241,7 +3275,7 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  _ZNK9QQmlTimer8intervalEv@Qt_5_PRIVATE_API 5.0.2 1
  _ZNK9QQmlTimer9isRunningEv@Qt_5_PRIVATE_API 5.0.2 1
  _ZNK9QV8Engine12illegalNamesEv@Qt_5_PRIVATE_API 5.0.2 1
- (optional=templinst|subst|arch=alpha amd64 arm64 armel armhf hppa kfreebsd-amd64 m68k mips mips64el powerpc powerpcspe ppc64 ppc64el s390x sh4 sparc64 x32)_ZNKSt6vectorIbSaIbEE2atE{size_t}@Qt_5 5.5.0
+ (optional=templinst|subst)_ZNKSt6vectorIbSaIbEE2atE{size_t}@Qt_5 5.5.0
  (optional=templinst)_ZNSt13_Bvector_baseISaIbEE13_M_deallocateEv@Qt_5 5.4.2
  (optional=templinst)_ZNSt6vectorIN21QAbstractAnimationJob14ChangeListenerESaIS1_EE17_M_realloc_insertIJS1_EEEvN9__gnu_cxx17__normal_iteratorIPS1_S3_EEDpOT_@Qt_5_PRIVATE_API 5.9.1 1
  (optional=templinst)_ZNSt6vectorIPKN3QV44Heap6StringESaIS4_EE12emplace_backIJS4_EEERS4_DpOT_@Qt_5_PRIVATE_API 5.9.1 1

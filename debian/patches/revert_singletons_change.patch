@@ -48,7 +48,7 @@ Last-Update: 2017-10-26
  {
 --- a/src/qml/qml/qqmlmetatype_p.h
 +++ b/src/qml/qml/qqmlmetatype_p.h
-@@ -300,8 +300,6 @@ public:
+@@ -302,8 +302,6 @@ public:
      QQmlType type(const QHashedStringRef &, int) const;
      QQmlType type(const QV4::String *, int) const;
  

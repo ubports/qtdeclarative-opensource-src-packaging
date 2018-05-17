@@ -14,7 +14,7 @@ This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
 +QMAKE_CXXFLAGS += -DTESTBINDIR=\\\"$$PWD/bin\\\"
 +QMAKE_CXXFLAGS += -DTESTEXAMPLEDIR=\\\"$$PWD/examples\\\"
 +
- MODULE_VERSION = 5.9.3
+ MODULE_VERSION = 5.9.5
 --- a/tests/auto/qml/qmlmin/tst_qmlmin.cpp
 +++ b/tests/auto/qml/qmlmin/tst_qmlmin.cpp
 @@ -64,7 +64,7 @@ tst_qmlmin::tst_qmlmin()
@@ -113,7 +113,7 @@ This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
      QVERIFY2(m_process->waitForSessionStart(),
 --- a/tests/auto/qml/debugger/qqmlprofilerservice/tst_qqmlprofilerservice.cpp
 +++ b/tests/auto/qml/debugger/qqmlprofilerservice/tst_qqmlprofilerservice.cpp
-@@ -319,7 +319,7 @@ private slots:
+@@ -320,7 +320,7 @@ private slots:
  void tst_QQmlProfilerService::connect(bool block, const QString &testFile, bool restrictServices)
  {
      // ### Still using qmlscene due to QTBUG-33377
@@ -135,7 +135,7 @@ This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
  
 --- a/tests/auto/qml/qmlcachegen/tst_qmlcachegen.cpp
 +++ b/tests/auto/qml/qmlcachegen/tst_qmlcachegen.cpp
-@@ -73,7 +73,7 @@ static bool generateCache(const QString
+@@ -74,7 +74,7 @@ static bool generateCache(const QString
      QProcess proc;
      if (capturedStderr == nullptr)
          proc.setProcessChannelMode(QProcess::ForwardedChannels);

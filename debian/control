@@ -12,23 +12,20 @@ Uploaders: Sune Vuorela <debian@pusling.com>,
 Build-Depends: debhelper (>= 9),
                dpkg-dev (>= 1.17.14),
                libgl1-mesa-dri,
-               libqt5opengl5-dev (>= 5.9.3+dfsg~),
-               libqt5xmlpatterns5-dev (>= 5.9.3~),
+               libqt5opengl5-dev (>= 5.9.5+dfsg~),
+               libqt5xmlpatterns5-dev (>= 5.9.5~),
                pkg-kde-tools (>= 0.15.17~),
                python,
-               qtbase5-private-dev (>= 5.9.3~),
+               qtbase5-private-dev (>= 5.9.5~),
                xauth,
                xvfb
-Build-Depends-Indep: libqt5sql5-sqlite (>= 5.9.2+dfsg~) <!nodoc>,
-                     qtbase5-doc-html (>= 5.6.0~) <!nodoc>,
-                     qttools5-dev-tools (>= 5.6.0~) <!nodoc>
 Standards-Version: 4.1.2
 Homepage: http://qt-project.org/
-Vcs-Git: https://anonscm.debian.org/git/pkg-kde/qt/qtdeclarative.git
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-kde/qt/qtdeclarative.git
+Vcs-Git: https://salsa.debian.org/qt-kde-team/qt/qtdeclarative.git
+Vcs-Browser: https://salsa.debian.org/qt-kde-team/qt/qtdeclarative
 
 Package: libqt5qml5
-Provides: qtdeclarative-abi-5-9-3
+Provides: qtdeclarative-abi-5-9-5
 Architecture: any
 Multi-Arch: same
 Pre-Depends: ${misc:Pre-Depends}

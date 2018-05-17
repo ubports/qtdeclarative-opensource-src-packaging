@@ -27,7 +27,7 @@ Last-Update: 2017-04-24
      qqmlenginecontrol \
 --- a/tests/auto/qml/qml.pro
 +++ b/tests/auto/qml/qml.pro
-@@ -24,7 +24,6 @@ PUBLICTESTS += \
+@@ -25,7 +25,6 @@ PUBLICTESTS += \
      qqmlmoduleplugin \
      qqmlnotifier \
      qqmlqt \
@@ -35,7 +35,7 @@ Last-Update: 2017-04-24
      qtqmlmodules \
      qquickfolderlistmodel \
      qqmlapplicationengine \
-@@ -88,10 +87,6 @@ qtConfig(process):!boot2qt {
+@@ -89,10 +88,6 @@ qtConfig(process):!boot2qt {
      SUBDIRS += qmllint qmlplugindump
  }
  

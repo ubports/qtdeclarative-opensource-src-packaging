@@ -1,14 +1,26 @@
-qtdeclarative-opensource-src (5.9.3+ubports1) xenial; urgency=medium
-
+qtdeclarative-opensource-src (5.9.5-0ubports1) xenial; urgency=medium
+ 
   * Patch qmlscene to work in confinement
 
  -- Dan Chapman <dan@ubports.com>  Thu, 15 Mar 2018 10:38:00 +0000
 
-qtdeclarative-opensource-src (5.9.3+ubports) xenial; urgency=medium
+qtdeclarative-opensource-src (5.9.5-0ubuntu1) bionic; urgency=medium
 
-  * Import to 5.9.3 to ubports
+  * New upstream release.
+  * Bump Qt build-dependencies to 5.9.5.
+  * Update Vcs fields for migration to salsa.debian.org.
+  * Refresh patches for the new release.
+  * Update symbols files for the new release.
+  * Bump qtdeclarative-abi-5-9-4 -> qtdeclarative-abi-5-9-5.
 
- -- Dan Chapman <dan@ubports.com>  Fri, 23 Feb 2018 11:33:18 +0000
+ -- Dmitry Shachnev <mitya57@ubuntu.com>  Sat, 14 Apr 2018 10:18:38 +0300
+
+qtdeclarative-opensource-src (5.9.4-0ubuntu1) bionic; urgency=medium
+
+  * New upstream release.
+  * Bump qtdeclarative-abi-5-9-3 -> qtdeclarative-abi-5-9-4.
+
+ -- Simon Quigley <tsimonq2@ubuntu.com>  Sun, 25 Feb 2018 00:04:50 -0600
 
 qtdeclarative-opensource-src (5.9.3-0ubuntu1) bionic; urgency=medium
 
