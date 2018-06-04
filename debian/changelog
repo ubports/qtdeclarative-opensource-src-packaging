@@ -1,3 +1,10 @@
+qtdeclarative-opensource-src (5.9.5-0ubports2) xenial; urgency=medium
+
+  * Revert "grabMouse() and QQWPriv::removeGrabber(): be clear whether mouse or
+    touch". Workaround for https://github.com/ubports/ubuntu-touch/issues/615
+
+ -- Dalton Durst <dalton@ubports.com>  Mon, 4 Jun 2018 13:31:00 -0500
+
 qtdeclarative-opensource-src (5.9.5-0ubports1) xenial; urgency=medium
  
   * Patch qmlscene to work in confinement

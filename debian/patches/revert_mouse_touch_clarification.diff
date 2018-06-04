@@ -1,0 +1,260 @@
+#Description: Revert "grabMouse() and QQWPriv::removeGrabber(): be clear whether mouse or touch"
+#Origin: Upstream (reverted): http://code.qt.io/cgit/qt/qtdeclarative.git/commit/?h=v5.9.5&id=9b1b87b6eb5fdf2f98e9e380d25d71bce93e7e27
+
+--- a/src/quick/items/qquickitem.cpp
++++ b/src/quick/items/qquickitem.cpp
+@@ -7309,18 +7309,10 @@
+ void QQuickItem::grabMouse()
+ {
+     Q_D(QQuickItem);
++    if (!d->window)
+-    if (!d->window || d->window->mouseGrabberItem() == this)
+         return;
+     QQuickWindowPrivate *windowPriv = QQuickWindowPrivate::get(d->window);
++    windowPriv->setMouseGrabber(this);
+-    bool fromTouch = windowPriv->isDeliveringTouchAsMouse();
+-    auto point = fromTouch ?
+-        windowPriv->pointerEventInstance(windowPriv->touchMouseDevice)->pointById(windowPriv->touchMouseId) :
+-        windowPriv->pointerEventInstance(QQuickPointerDevice::genericMouseDevice())->point(0);
+-    if (point) {
+-        QQuickItem *oldGrabber = point->grabber();
+-        point->setGrabber(this);
+-        windowPriv->sendUngrabEvent(oldGrabber, fromTouch);
+-    }
+ }
+ 
+ /*!
+--- a/src/quick/items/qquickwindow.cpp
++++ b/src/quick/items/qquickwindow.cpp
+@@ -738,6 +738,40 @@
+     return false;
+ }
+ 
++void QQuickWindowPrivate::setMouseGrabber(QQuickItem *grabber)
++{
++    Q_Q(QQuickWindow);
++    if (q->mouseGrabberItem() == grabber)
++        return;
++
++    qCDebug(DBG_MOUSE_TARGET) << "grabber" << q->mouseGrabberItem() << "->" << grabber;
++    QQuickItem *oldGrabber = q->mouseGrabberItem();
++    bool fromTouch = false;
++
++    if (grabber && touchMouseId != -1 && touchMouseDevice) {
++        // update the touch item for mouse touch id to the new grabber
++        qCDebug(DBG_TOUCH_TARGET) << "TP (mouse)" << hex << touchMouseId << "->" << q->mouseGrabberItem();
++        auto point = pointerEventInstance(touchMouseDevice)->pointById(touchMouseId);
++        if (point)
++            point->setGrabber(grabber);
++        fromTouch = true;
++    } else {
++        QQuickPointerEvent *event = pointerEventInstance(QQuickPointerDevice::genericMouseDevice());
++        Q_ASSERT(event->pointCount() == 1);
++        event->point(0)->setGrabber(grabber);
++    }
++
++    if (oldGrabber) {
++        QEvent e(QEvent::UngrabMouse);
++        QSet<QQuickItem *> hasFiltered;
++        if (!sendFilteredMouseEvent(oldGrabber->parentItem(), oldGrabber, &e, &hasFiltered)) {
++            oldGrabber->mouseUngrabEvent();
++            if (fromTouch)
++                oldGrabber->touchUngrabEvent();
++        }
++    }
++}
++
+ void QQuickWindowPrivate::grabTouchPoints(QQuickItem *grabber, const QVector<int> &ids)
+ {
+     QSet<QQuickItem*> ungrab;
+@@ -783,14 +817,8 @@
+ {
+     Q_Q(QQuickWindow);
+     if (Q_LIKELY(mouse) && q->mouseGrabberItem() == grabber) {
++        qCDebug(DBG_MOUSE_TARGET) << "removeGrabber" << q->mouseGrabberItem() << "-> null";
++        setMouseGrabber(nullptr);
+-        bool fromTouch = isDeliveringTouchAsMouse();
+-        auto point = fromTouch ?
+-            pointerEventInstance(touchMouseDevice)->pointById(touchMouseId) :
+-            pointerEventInstance(QQuickPointerDevice::genericMouseDevice())->point(0);
+-        QQuickItem *oldGrabber = point->grabber();
+-        qCDebug(DBG_MOUSE_TARGET) << "removeGrabber" << oldGrabber << "-> null";
+-        point->setGrabber(nullptr);
+-        sendUngrabEvent(oldGrabber, fromTouch);
+     }
+     if (Q_LIKELY(touch)) {
+         const auto touchDevices = QQuickPointerDevice::touchDevices();
+@@ -808,19 +836,6 @@
+     }
+ }
+ 
+-void QQuickWindowPrivate::sendUngrabEvent(QQuickItem *grabber, bool touch)
+-{
+-    if (!grabber)
+-        return;
+-    QEvent e(QEvent::UngrabMouse);
+-    QSet<QQuickItem *> hasFiltered;
+-    if (!sendFilteredMouseEvent(grabber->parentItem(), grabber, &e, &hasFiltered)) {
+-        grabber->mouseUngrabEvent();
+-        if (touch)
+-            grabber->touchUngrabEvent();
+-    }
+-}
+-
+ /*!
+ Translates the data in \a touchEvent to this window.  This method leaves the item local positions in
+ \a touchEvent untouched (these are filled in later).
+@@ -1479,7 +1494,7 @@
+ {
+     Q_D(const QQuickWindow);
+ 
++    if (d->touchMouseId != -1 && d->touchMouseDevice) {
+-    if (d->isDeliveringTouchAsMouse()) {
+         if (QQuickPointerEvent *event = d->queryPointerEventInstance(d->touchMouseDevice)) {
+             auto point = event->pointById(d->touchMouseId);
+             return point ? point->grabber() : nullptr;
+@@ -1641,7 +1656,7 @@
+     auto point = pointerEvent->point(0);
+     lastMousePosition = point->scenePos();
+     QQuickItem *grabber = point->grabber();
++    if (!grabber && touchMouseId != -1 && touchMouseDevice)
+-    if (!grabber && isDeliveringTouchAsMouse())
+         grabber = q->mouseGrabberItem();
+ 
+     if (grabber) {
+--- a/src/quick/items/qquickwindow_p.h
++++ b/src/quick/items/qquickwindow_p.h
+@@ -141,11 +141,10 @@
+     // Mouse positions are saved in widget coordinates
+     QPointF lastMousePosition;
+     bool deliverTouchAsMouse(QQuickItem *item, QQuickPointerEvent *pointerEvent);
+-    bool isDeliveringTouchAsMouse() const { return touchMouseId != -1 && touchMouseDevice; }
+     void translateTouchEvent(QTouchEvent *touchEvent);
++    void setMouseGrabber(QQuickItem *grabber);
+     void grabTouchPoints(QQuickItem *grabber, const QVector<int> &ids);
+     void removeGrabber(QQuickItem *grabber, bool mouse = true, bool touch = true);
+-    void sendUngrabEvent(QQuickItem *grabber, bool touch);
+     static QMouseEvent *cloneMouseEvent(QMouseEvent *event, QPointF *transformedLocalPos = 0);
+     void deliverMouseEvent(QQuickPointerMouseEvent *pointerEvent);
+     bool sendFilteredMouseEvent(QQuickItem *, QQuickItem *, QEvent *, QSet<QQuickItem *> *);
+--- a/tests/auto/quick/qquickmousearea/data/twoMouseAreas.qml
++++ /dev/null
+@@ -1,33 +0,0 @@
+-import QtQuick 2.0
+-import QtQuick.Window 2.0
+-
+-Rectangle {
+-    width: 400
+-    height: 300
+-
+-    property bool topPressed: top.pressed
+-    property bool bottomPressed: bottom.pressed
+-
+-    MouseArea {
+-        id: top
+-        objectName: "top"
+-        width: parent.width
+-        height: parent.height / 2 - 2
+-        Rectangle {
+-            anchors.fill: parent
+-            color: parent.pressed ? "MediumSeaGreen" : "beige"
+-        }
+-    }
+-
+-    MouseArea {
+-        id: bottom
+-        objectName: "bottom"
+-        y: parent.height / 2
+-        width: parent.width
+-        height: parent.height / 2
+-        Rectangle {
+-            anchors.fill: parent
+-            color: parent.pressed ? "MediumSeaGreen" : "beige"
+-        }
+-    }
+-}
+--- a/tests/auto/quick/qquickmousearea/tst_qquickmousearea.cpp
++++ b/tests/auto/quick/qquickmousearea/tst_qquickmousearea.cpp
+@@ -130,8 +130,6 @@
+     void notPressedAfterStolenGrab();
+     void pressAndHold_data();
+     void pressAndHold();
+-    void pressOneAndTapAnother_data();
+-    void pressOneAndTapAnother();
+ 
+ private:
+     int startDragDistance() const {
+@@ -2175,73 +2173,6 @@
+     QTest::mouseRelease(&window, Qt::LeftButton, Qt::NoModifier, QPoint(50, 50));
+ }
+ 
+-void tst_QQuickMouseArea::pressOneAndTapAnother_data()
+-{
+-    QTest::addColumn<bool>("pressMouseFirst");
+-    QTest::addColumn<bool>("releaseMouseFirst");
+-
+-    QTest::newRow("press mouse, tap touch, release mouse") << true << false; // QTBUG-64249 as written
+-    QTest::newRow("press touch, press mouse, release touch, release mouse") << false << false;
+-    QTest::newRow("press mouse, press touch, release mouse, release touch") << true << true;
+-    QTest::newRow("press touch, click mouse, release touch") << false << true;
+-}
+-
+-void tst_QQuickMouseArea::pressOneAndTapAnother()
+-{
+-    QFETCH(bool, pressMouseFirst);
+-    QFETCH(bool, releaseMouseFirst);
+-
+-    QQuickView window;
+-    QByteArray errorMessage;
+-    QVERIFY2(initView(window, testFileUrl("twoMouseAreas.qml"), true, &errorMessage), errorMessage.constData());
+-    window.show();
+-    window.requestActivate();
+-    QVERIFY(QTest::qWaitForWindowExposed(&window));
+-    QQuickItem *root = window.rootObject();
+-    QVERIFY(root);
+-    QQuickMouseArea *bottomMA = window.rootObject()->findChild<QQuickMouseArea*>("bottom");
+-    QVERIFY(bottomMA);
+-    QQuickMouseArea *topMA = window.rootObject()->findChild<QQuickMouseArea*>("top");
+-    QVERIFY(topMA);
+-
+-    QPoint upper(32, 32);
+-    QPoint lower(32, window.height() - 32);
+-
+-    // press them both
+-    if (pressMouseFirst) {
+-        QTest::mousePress(&window, Qt::LeftButton, Qt::NoModifier, lower);
+-        QTRY_COMPARE(bottomMA->pressed(), true);
+-
+-        QTest::touchEvent(&window, device).press(0, lower, &window);
+-        QQuickTouchUtils::flush(&window);
+-        QTRY_COMPARE(bottomMA->pressed(), true);
+-    } else {
+-        QTest::touchEvent(&window, device).press(0, lower, &window);
+-        QQuickTouchUtils::flush(&window);
+-        QTRY_COMPARE(bottomMA->pressed(), true);
+-
+-        QTest::mousePress(&window, Qt::LeftButton, Qt::NoModifier, lower);
+-        QTRY_COMPARE(bottomMA->pressed(), true);
+-    }
+-
+-    // release them both and make sure neither one gets stuck
+-    if (releaseMouseFirst) {
+-        QTest::mouseRelease(&window, Qt::LeftButton, Qt::NoModifier, lower);
+-        QTRY_COMPARE(bottomMA->pressed(), false);
+-
+-        QTest::touchEvent(&window, device).release(0, upper, &window);
+-        QQuickTouchUtils::flush(&window);
+-        QTRY_COMPARE(topMA->pressed(), false);
+-    } else {
+-        QTest::touchEvent(&window, device).release(0, upper, &window);
+-        QQuickTouchUtils::flush(&window);
+-
+-        QTRY_COMPARE(topMA->pressed(), false);
+-        QTest::mouseRelease(&window, Qt::LeftButton, Qt::NoModifier, lower);
+-        QTRY_COMPARE(bottomMA->pressed(), false);
+-    }
+-}
+-
+ QTEST_MAIN(tst_QQuickMouseArea)
+ 
+ #include "tst_qquickmousearea.moc"
