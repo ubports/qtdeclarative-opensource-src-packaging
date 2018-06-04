@@ -84,26 +84,6 @@
      }
      if (Q_LIKELY(touch)) {
          const auto touchDevices = QQuickPointerDevice::touchDevices();
-@@ -808,19 +836,6 @@
-     }
- }
- 
--void QQuickWindowPrivate::sendUngrabEvent(QQuickItem *grabber, bool touch)
--{
--    if (!grabber)
--        return;
--    QEvent e(QEvent::UngrabMouse);
--    QSet<QQuickItem *> hasFiltered;
--    if (!sendFilteredMouseEvent(grabber->parentItem(), grabber, &e, &hasFiltered)) {
--        grabber->mouseUngrabEvent();
--        if (touch)
--            grabber->touchUngrabEvent();
--    }
--}
--
- /*!
- Translates the data in \a touchEvent to this window.  This method leaves the item local positions in
- \a touchEvent untouched (these are filled in later).
 @@ -1479,7 +1494,7 @@
  {
      Q_D(const QQuickWindow);
@@ -128,12 +108,12 @@
      // Mouse positions are saved in widget coordinates
      QPointF lastMousePosition;
      bool deliverTouchAsMouse(QQuickItem *item, QQuickPointerEvent *pointerEvent);
--    bool isDeliveringTouchAsMouse() const { return touchMouseId != -1 && touchMouseDevice; }
+     bool isDeliveringTouchAsMouse() const { return touchMouseId != -1 && touchMouseDevice; }
      void translateTouchEvent(QTouchEvent *touchEvent);
 +    void setMouseGrabber(QQuickItem *grabber);
      void grabTouchPoints(QQuickItem *grabber, const QVector<int> &ids);
      void removeGrabber(QQuickItem *grabber, bool mouse = true, bool touch = true);
--    void sendUngrabEvent(QQuickItem *grabber, bool touch);
+     void sendUngrabEvent(QQuickItem *grabber, bool touch);
      static QMouseEvent *cloneMouseEvent(QMouseEvent *event, QPointF *transformedLocalPos = 0);
      void deliverMouseEvent(QQuickPointerMouseEvent *pointerEvent);
      bool sendFilteredMouseEvent(QQuickItem *, QQuickItem *, QEvent *, QSet<QQuickItem *> *);
