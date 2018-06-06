@@ -8,3 +8,4 @@ Do-not-make-lack-of-SSE2-support-on-x86-32-fatal.patch
 disable_jit_on_mips.patch
 revert_singletons_change.patch
 testcase_array_iteration.patch
+tweak_stuff

@@ -1,0 +1,13 @@
+Index: qtdeclarative-opensource-src-packaging/src/quick/items/qquickflickablebehavior_p.h
+===================================================================
+--- qtdeclarative-opensource-src-packaging.orig/src/quick/items/qquickflickablebehavior_p.h	2018-06-06 13:48:45.257564106 -0500
++++ qtdeclarative-opensource-src-packaging/src/quick/items/qquickflickablebehavior_p.h	2018-06-06 13:49:40.449172112 -0500
+@@ -70,7 +70,7 @@
+ // The number of samples to discard when calculating the flick velocity.
+ // Touch panels often produce inaccurate results as the finger is lifted.
+ #ifndef QML_FLICK_DISCARDSAMPLES
+-#define QML_FLICK_DISCARDSAMPLES 0
++#define QML_FLICK_DISCARDSAMPLES 3
+ #endif
+ 
+ // The default maximum velocity of a flick.
