@@ -1,0 +1,24 @@
+Index: qtdeclarative-opensource-src-5.9.5/src/quick/items/qquickflickable.cpp
+===================================================================
+--- qtdeclarative-opensource-src-5.9.5.orig/src/quick/items/qquickflickable.cpp
++++ qtdeclarative-opensource-src-5.9.5/src/quick/items/qquickflickable.cpp
+@@ -2677,15 +2677,15 @@ void QQuickFlickable::movementEnding(boo
+     if (hMovementEnding && d->hData.moving
+             && (!d->pressed && !d->stealMouse)) {
+         d->hData.moving = false;
+-        if (!d->scrollingPhase)
+-            d->hMoved = false;
++        //if (!d->scrollingPhase)
++        d->hMoved = false;
+         emit movingHorizontallyChanged();
+     }
+     if (vMovementEnding && d->vData.moving
+             && (!d->pressed && !d->stealMouse)) {
+         d->vData.moving = false;
+-        if (!d->scrollingPhase)
+-            d->vMoved = false;
++        //if (!d->scrollingPhase)
++        d->vMoved = false;
+         emit movingVerticallyChanged();
+     }
+     if (wasMoving && !isMoving()) {
