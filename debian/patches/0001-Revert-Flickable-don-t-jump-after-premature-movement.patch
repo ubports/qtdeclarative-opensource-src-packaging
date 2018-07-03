@@ -1,0 +1,61 @@
+From 76f8f7b26384c8b629d4ba94e05e037f68de3013 Mon Sep 17 00:00:00 2001
+From: Marius Gripsgard <marius@ubports.com>
+Date: Tue, 3 Jul 2018 03:06:48 +0200
+Subject: [PATCH 1/5] Revert "Flickable: don't jump after premature
+ movementEnding due to timer"
+
+This reverts commit ae01e0dbf50cb6da1967e10eb95d63313dc5aa7a.
+---
+ src/quick/items/qquickflickable.cpp | 14 +++-----------
+ 1 file changed, 3 insertions(+), 11 deletions(-)
+
+diff --git a/src/quick/items/qquickflickable.cpp b/src/quick/items/qquickflickable.cpp
+index 44612edc4..366282797 100644
+--- a/src/quick/items/qquickflickable.cpp
++++ b/src/quick/items/qquickflickable.cpp
+@@ -1444,23 +1444,17 @@ void QQuickFlickable::wheelEvent(QWheelEvent *event)
+     case Qt::ScrollUpdate:
+         if (d->scrollingPhase)
+             d->pressed = true;
+-#ifdef Q_OS_MACOS
+-        // TODO eliminate this timer when ScrollMomentum has been added
++#ifdef Q_OS_OSX
+         d->movementEndingTimer.start(MovementEndingTimerInterval, this);
+ #endif
+         break;
+     case Qt::ScrollEnd:
+-        // TODO most of this should be done at transition to ScrollMomentum phase,
+-        // then do what the movementEndingTimer triggers at transition to ScrollEnd phase
+         d->pressed = false;
+         d->scrollingPhase = false;
+         d->draggingEnding();
+         event->accept();
+         returnToBounds();
+         d->lastPosTime = -1;
+-#ifdef Q_OS_MACOS
+-        d->movementEndingTimer.start(MovementEndingTimerInterval, this);
+-#endif
+         return;
+     }
+ 
+@@ -2677,15 +2671,13 @@ void QQuickFlickable::movementEnding(bool hMovementEnding, bool vMovementEnding)
+     if (hMovementEnding && d->hData.moving
+             && (!d->pressed && !d->stealMouse)) {
+         d->hData.moving = false;
+-        if (!d->scrollingPhase)
+-            d->hMoved = false;
++        d->hMoved = false;
+         emit movingHorizontallyChanged();
+     }
+     if (vMovementEnding && d->vData.moving
+             && (!d->pressed && !d->stealMouse)) {
+         d->vData.moving = false;
+-        if (!d->scrollingPhase)
+-            d->vMoved = false;
++        d->vMoved = false;
+         emit movingVerticallyChanged();
+     }
+     if (wasMoving && !isMoving()) {
+-- 
+2.17.1
+

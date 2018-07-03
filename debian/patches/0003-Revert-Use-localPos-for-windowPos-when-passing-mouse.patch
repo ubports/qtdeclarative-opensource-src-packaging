@@ -1,0 +1,141 @@
+From 912aae7e02920249ad2ea408504a1f10f0127c0d Mon Sep 17 00:00:00 2001
+From: Marius Gripsgard <marius@ubports.com>
+Date: Tue, 3 Jul 2018 03:17:06 +0200
+Subject: [PATCH 3/5] Revert "Use localPos for windowPos when passing mouse
+ events to QQuickWidget"
+
+This reverts commit 317908e72a6ea0b4ca179690539cb352bbf60832.
+---
+ src/quickwidgets/qquickwidget.cpp             | 18 ++++++------
+ .../quickwidgets/qquickwidget/data/mouse.qml  | 18 ------------
+ .../qquickwidget/tst_qquickwidget.cpp         | 29 -------------------
+ 3 files changed, 9 insertions(+), 56 deletions(-)
+ delete mode 100644 tests/auto/quickwidgets/qquickwidget/data/mouse.qml
+
+diff --git a/src/quickwidgets/qquickwidget.cpp b/src/quickwidgets/qquickwidget.cpp
+index b15df8811..fd1ae5229 100644
+--- a/src/quickwidgets/qquickwidget.cpp
++++ b/src/quickwidgets/qquickwidget.cpp
+@@ -1246,11 +1246,11 @@ void QQuickWidget::mouseMoveEvent(QMouseEvent *e)
+     Q_QUICK_INPUT_PROFILE(QQuickProfiler::Mouse, QQuickProfiler::InputMouseMove, e->localPos().x(),
+                           e->localPos().y());
+ 
+-    // Put localPos into the event's localPos and windowPos, and screenPos into the
+-    // event's screenPos. This way the windowPos in e is ignored and is replaced by
+-    // localPos. This is necessary because QQuickWindow thinks of itself as a
+-    // top-level window always.
+-    QMouseEvent mappedEvent(e->type(), e->localPos(), e->localPos(), e->screenPos(),
++    // Use the constructor taking localPos and screenPos. That puts localPos into the
++    // event's localPos and windowPos, and screenPos into the event's screenPos. This way
++    // the windowPos in e is ignored and is replaced by localPos. This is necessary
++    // because QQuickWindow thinks of itself as a top-level window always.
++    QMouseEvent mappedEvent(e->type(), e->localPos(), e->windowPos(), e->screenPos(),
+                             e->button(), e->buttons(), e->modifiers(), e->source());
+     QCoreApplication::sendEvent(d->offscreenWindow, &mappedEvent);
+     e->setAccepted(mappedEvent.isAccepted());
+@@ -1265,11 +1265,11 @@ void QQuickWidget::mouseDoubleClickEvent(QMouseEvent *e)
+ 
+     // As the second mouse press is suppressed in widget windows we emulate it here for QML.
+     // See QTBUG-25831
+-    QMouseEvent pressEvent(QEvent::MouseButtonPress, e->localPos(), e->localPos(), e->screenPos(),
++    QMouseEvent pressEvent(QEvent::MouseButtonPress, e->localPos(), e->windowPos(), e->screenPos(),
+                            e->button(), e->buttons(), e->modifiers(), e->source());
+     QCoreApplication::sendEvent(d->offscreenWindow, &pressEvent);
+     e->setAccepted(pressEvent.isAccepted());
+-    QMouseEvent mappedEvent(e->type(), e->localPos(), e->localPos(), e->screenPos(),
++    QMouseEvent mappedEvent(e->type(), e->localPos(), e->windowPos(), e->screenPos(),
+                             e->button(), e->buttons(), e->modifiers(), e->source());
+     QCoreApplication::sendEvent(d->offscreenWindow, &mappedEvent);
+ }
+@@ -1330,7 +1330,7 @@ void QQuickWidget::mousePressEvent(QMouseEvent *e)
+     Q_QUICK_INPUT_PROFILE(QQuickProfiler::Mouse, QQuickProfiler::InputMousePress, e->button(),
+                           e->buttons());
+ 
+-    QMouseEvent mappedEvent(e->type(), e->localPos(), e->localPos(), e->screenPos(),
++    QMouseEvent mappedEvent(e->type(), e->localPos(), e->windowPos(), e->screenPos(),
+                             e->button(), e->buttons(), e->modifiers(), e->source());
+     QCoreApplication::sendEvent(d->offscreenWindow, &mappedEvent);
+     e->setAccepted(mappedEvent.isAccepted());
+@@ -1343,7 +1343,7 @@ void QQuickWidget::mouseReleaseEvent(QMouseEvent *e)
+     Q_QUICK_INPUT_PROFILE(QQuickProfiler::Mouse, QQuickProfiler::InputMouseRelease, e->button(),
+                           e->buttons());
+ 
+-    QMouseEvent mappedEvent(e->type(), e->localPos(), e->localPos(), e->screenPos(),
++    QMouseEvent mappedEvent(e->type(), e->localPos(), e->windowPos(), e->screenPos(),
+                             e->button(), e->buttons(), e->modifiers(), e->source());
+     QCoreApplication::sendEvent(d->offscreenWindow, &mappedEvent);
+     e->setAccepted(mappedEvent.isAccepted());
+diff --git a/tests/auto/quickwidgets/qquickwidget/data/mouse.qml b/tests/auto/quickwidgets/qquickwidget/data/mouse.qml
+deleted file mode 100644
+index 5d1c6e844..000000000
+--- a/tests/auto/quickwidgets/qquickwidget/data/mouse.qml
++++ /dev/null
+@@ -1,18 +0,0 @@
+-import QtQuick 2.0
+-
+-Rectangle {
+-    width: 50
+-    height: 50
+-
+-    property bool wasClicked: false
+-    property bool wasDoubleClicked: false
+-    property bool wasMoved: false
+-
+-    MouseArea {
+-        anchors.fill: parent
+-        hoverEnabled: true
+-        onClicked: wasClicked = true
+-        onDoubleClicked: wasDoubleClicked = true
+-        onMouseXChanged: wasMoved = true
+-    }
+-}
+diff --git a/tests/auto/quickwidgets/qquickwidget/tst_qquickwidget.cpp b/tests/auto/quickwidgets/qquickwidget/tst_qquickwidget.cpp
+index 6c8d8191a..e4991a5f2 100644
+--- a/tests/auto/quickwidgets/qquickwidget/tst_qquickwidget.cpp
++++ b/tests/auto/quickwidgets/qquickwidget/tst_qquickwidget.cpp
+@@ -62,7 +62,6 @@ private slots:
+     void keyEvents();
+     void shortcuts();
+     void enterLeave();
+-    void mouseEventWindowPos();
+ };
+ 
+ 
+@@ -434,34 +433,6 @@ void tst_qquickwidget::enterLeave()
+     QTRY_VERIFY(!rootItem->property("hasMouse").toBool());
+ }
+ 
+-void tst_qquickwidget::mouseEventWindowPos()
+-{
+-    QWidget widget;
+-    widget.resize(100, 100);
+-    QQuickWidget *quick = new QQuickWidget(&widget);
+-    quick->setSource(testFileUrl("mouse.qml"));
+-    quick->move(50, 50);
+-    widget.show();
+-    QVERIFY(QTest::qWaitForWindowExposed(&widget, 5000));
+-    QQuickItem *rootItem = quick->rootObject();
+-    QVERIFY(rootItem);
+-
+-    QVERIFY(!rootItem->property("wasClicked").toBool());
+-    QVERIFY(!rootItem->property("wasDoubleClicked").toBool());
+-    QVERIFY(!rootItem->property("wasMoved").toBool());
+-
+-    QWindow *window = widget.windowHandle();
+-    QVERIFY(window);
+-
+-    QTest::mouseMove(window, QPoint(60, 60));
+-    QTest::mouseClick(window, Qt::LeftButton, Qt::KeyboardModifiers(), QPoint(60, 60));
+-    QTRY_VERIFY(rootItem->property("wasClicked").toBool());
+-    QTest::mouseDClick(window, Qt::LeftButton, Qt::KeyboardModifiers(), QPoint(60, 60));
+-    QTRY_VERIFY(rootItem->property("wasDoubleClicked").toBool());
+-    QTest::mouseMove(window, QPoint(70, 70));
+-    QTRY_VERIFY(rootItem->property("wasMoved").toBool());
+-}
+-
+ QTEST_MAIN(tst_qquickwidget)
+ 
+ #include "tst_qquickwidget.moc"
+-- 
+2.17.1
+

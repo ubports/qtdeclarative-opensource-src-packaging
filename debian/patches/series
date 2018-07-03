@@ -11,3 +11,8 @@ testcase_array_iteration.patch
 
 # UBports
 Fix-bug-preventing-ungrabMouse-on-TouchCancel.patch
+0001-Revert-Flickable-don-t-jump-after-premature-movement.patch
+0002-Revert-add-tst_qquickwidget-synthMouseFromTouch-test.patch
+0003-Revert-Use-localPos-for-windowPos-when-passing-mouse.patch
+0004-Revert-QQuickWidget-preserve-QMouseEvent-source-when.patch
+0005-Revert-Remap-the-coordinates-in-QInputMethodQueryEve.patch 

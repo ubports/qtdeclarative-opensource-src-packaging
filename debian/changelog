@@ -1,4 +1,4 @@
-qtdeclarative-opensource-src (5.9.5-0ubports1) xenial; urgency=medium
+qtdeclarative-opensource-src (5.9.5-1ubports2) xenial; urgency=medium
  
   * Patch qmlscene to work in confinement
 
