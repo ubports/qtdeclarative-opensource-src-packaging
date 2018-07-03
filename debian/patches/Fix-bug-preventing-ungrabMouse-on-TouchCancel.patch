@@ -1,0 +1,58 @@
+From 2597e43497aa8a223d65c669f07bd2e8fdf7e1f1 Mon Sep 17 00:00:00 2001
+From: Daniel d'Andrada <daniel.dandrada@luxoft.com>
+Date: Mon, 9 Oct 2017 17:39:44 +0200
+Subject: Fix bug preventing ungrabMouse() on TouchCancel
+
+The order matters. There won't be a mouseGrabberItem() after
+the cancelExclusiveGrabImpl() call. So ungrab the mouse before
+calling it, not after.
+
+This cherry-pick includes some other changes to
+tst_qquickwindow.cpp (parts of
+9d8fe2ac121162c15be6728495be2235b728325a) that enable the
+cherry-picked test function touchEvent_cancelClearsMouseGrab()
+to be the same as it is in 5.10 branch.
+
+Task-number: QTBUG-63680
+Task-number: QTBUG-67445
+Change-Id: I1ba6401c5d8eb3417907eb1e6ca20816b501f3ac
+Reviewed-by: Qt CI Bot <qt_ci_bot@qt-project.org>
+Reviewed-by: Shawn Rutledge <shawn.rutledge@qt.io>
+(cherry-picked from 0821180dc833376a738742e33f728983b9ca6f84)
+Reviewed-by: Tasuku Suzuki <tasuku.suzuki@qt.io>
+---
+ src/quick/items/qquickwindow.cpp | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
+
+(limited to 'src/quick/items')
+
+diff --git a/src/quick/items/qquickwindow.cpp b/src/quick/items/qquickwindow.cpp
+index 15ade6767..a1136cc3f 100644
+--- a/src/quick/items/qquickwindow.cpp
++++ b/src/quick/items/qquickwindow.cpp
+@@ -1883,6 +1883,11 @@ bool QQuickWindowPrivate::deliverTouchCancelEvent(QTouchEvent *event)
+     qCDebug(DBG_TOUCH) << event;
+     Q_Q(QQuickWindow);
+ 
++    if (q->mouseGrabberItem())
++        q->mouseGrabberItem()->ungrabMouse();
++    touchMouseId = -1;
++    touchMouseDevice = nullptr;
++
+     // A TouchCancel event will typically not contain any points.
+     // Deliver it to all items that have active touches.
+     QQuickPointerEvent *pointerEvent = pointerEventInstance(QQuickPointerDevice::touchDevice(event->device()));
+@@ -1891,10 +1896,6 @@ bool QQuickWindowPrivate::deliverTouchCancelEvent(QTouchEvent *event)
+     for (QQuickItem *grabber: qAsConst(grabbers)) {
+         q->sendEvent(grabber, event);
+     }
+-    touchMouseId = -1;
+-    touchMouseDevice = nullptr;
+-    if (q->mouseGrabberItem())
+-        q->mouseGrabberItem()->ungrabMouse();
+ 
+     // The next touch event can only be a TouchBegin so clean up.
+     pointerEvent->clearGrabbers();
+-- 
+cgit v1.1-6-g87c4
+
