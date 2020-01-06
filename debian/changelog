@@ -1,3 +1,10 @@
+qtdeclarative-opensource-src (5.9.5-0ubports2) xenial; urgency=medium
+
+  * Update Jenkinsfile as of ubports/build-tools@0af3831
+  * Fix FTBFS by adding qttools5-dev-tools to build-dep
+
+ -- Ratchanan Srirattanamet <ratchanan@ubports.com>  Tue, 07 Jan 2020 01:21:32 +0700
+
 qtdeclarative-opensource-src (5.9.5-0ubports1) xenial; urgency=medium
  
   * Patch qmlscene to work in confinement
