@@ -1,0 +1,27 @@
+Description: apply bugfix for crash on transforms (was fixed upstream in Qt 5.9.6 and 5.11.1)
+Author: Chris Clime <chris.clime@gmx.net>
+Bug: https://bugreports.qt.io/browse/QTBUG-67024
+
+--- a/src/quick/items/qquickitem.cpp
++++ b/src/quick/items/qquickitem.cpp
+@@ -3121,6 +3121,9 @@
+ */
+ QTransform QQuickItemPrivate::windowToGlobalTransform() const
+ {
++    if (Q_UNLIKELY(window == nullptr))
++        return QTransform();
++
+     QPoint quickWidgetOffset;
+     QWindow *renderWindow = QQuickRenderControl::renderWindowFor(window, &quickWidgetOffset);
+     QPointF pos = (renderWindow ? renderWindow : window)->mapToGlobal(quickWidgetOffset);
+@@ -3132,6 +3135,9 @@
+ */
+ QTransform QQuickItemPrivate::globalToWindowTransform() const
+ {
++    if (Q_UNLIKELY(window == nullptr))
++        return QTransform();
++
+     QPoint quickWidgetOffset;
+     QWindow *renderWindow = QQuickRenderControl::renderWindowFor(window, &quickWidgetOffset);
+     QPointF pos = (renderWindow ? renderWindow : window)->mapToGlobal(quickWidgetOffset);
+
