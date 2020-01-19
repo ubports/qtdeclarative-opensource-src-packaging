@@ -1,3 +1,9 @@
+qtdeclarative-opensource-src (5.9.5-0ubports3) xenial; urgency=medium
+
+  * add fix for QTBUG-67024 which was fixed upstream in 5.9.6 and 5.11.1 (fixes segfault of QtWebEngine 5.13)
+
+ -- Chris Clime <chris.clime@gmx.net> Sun, 19 Jun 2020 12:59:00 +0100
+
 qtdeclarative-opensource-src (5.9.5-0ubports2) xenial; urgency=medium
 
   * Update Jenkinsfile as of ubports/build-tools@0af3831
