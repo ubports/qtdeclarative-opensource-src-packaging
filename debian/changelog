@@ -1,3 +1,9 @@
+qtdeclarative-opensource-src (5.9.8-0ubports0) xenial; urgency=medium
+
+  * test build 5.9.8
+
+ -- Chris Clime
+
 qtdeclarative-opensource-src (5.9.5-0ubports2) xenial; urgency=medium
 
   * Update Jenkinsfile as of ubports/build-tools@0af3831
