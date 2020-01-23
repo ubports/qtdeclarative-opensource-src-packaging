@@ -2,7 +2,7 @@ qtdeclarative-opensource-src (5.9.8-0ubports0) xenial; urgency=medium
 
   * test build 5.9.8
 
- -- Chris Clime
+ -- Chris Clime <chris.clime@gmx.net> Thu, 23 Jan 2020 20:06:00 +0100
 
 qtdeclarative-opensource-src (5.9.5-0ubports2) xenial; urgency=medium
 
