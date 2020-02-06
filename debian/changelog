@@ -1,3 +1,9 @@
+qtdeclarative-opensource-src (5.12.5-5ubports1) xenial; urgency=medium
+
+  * Upload for ubports 
+
+ -- Marius Gripsgard <marius@ubports.com>  Thu, 06 Feb 2020 11:51:49 +0100
+
 qtdeclarative-opensource-src (5.12.5-5) unstable; urgency=medium
 
   * Link with -latomic on riscv64, based on a patch by Aurelien Jarno.
