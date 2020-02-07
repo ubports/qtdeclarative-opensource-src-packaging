@@ -19,7 +19,7 @@ override_dh_auto_clean:
 	rm -rf $(CURDIR)/.local
 
 override_dh_auto_configure:
-	dh_auto_configure -- QT_BUILD_PARTS+=tests
+	qmake -makefile "QMAKE_CFLAGS_RELEASE=-g -O2 -fPIE -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2" "QMAKE_CFLAGS_DEBUG=-g -O2 -fPIE -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2" "QMAKE_CXXFLAGS_RELEASE=-g -O2 -fPIE -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2" "QMAKE_CXXFLAGS_DEBUG=-g -O2 -fPIE -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2" "QMAKE_LFLAGS_RELEASE=-Wl,-Bsymbolic-functions -fPIE -pie -Wl,-z,relro -Wl,-z,now" "QMAKE_LFLAGS_DEBUG=-Wl,-Bsymbolic-functions -fPIE -pie -Wl,-z,relro -Wl,-z,now" QMAKE_STRIP=: PREFIX=/usr QT_BUILD_PARTS\+=testso
 
 override_dh_auto_build-indep:
 	dh_auto_build -- docs
